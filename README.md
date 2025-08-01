@@ -3,8 +3,8 @@
 |  | Plan | Status | Est Completion |
 | ------ | ------ | ------ | ------ |
 | 1 | Project Initialization | Done | Fri/1st/August
-| 2 | Folder Structure + Setting Absolute path | Pending | Fri/1st/August
-| 3 | UI + State + Zod Libraries Install | Pending | Fri/1st/August
+| 2 | Folder Structure + Setting Absolute path | Done | Fri/1st/August
+| 3 | UI + State + Zod Libraries Install | Done | Fri/1st/August
 | 4 | Responsive Core Layout  + Maintain State for Project Level Configuration + Profile Section | Pending | Sat/2nd/August
 | 5 | Project List Component + Tree Structure + All Project Mock data | Pending | Sat/2nd/August
 | 6 | Chat Core component  + communication setup with current project state + Chat state  | Pending | Sun/3rd/Aug
@@ -21,7 +21,6 @@
 | 1 | Project Level Store for configuring like darkmode + mobile view or desktop view ,permission matrix, etc + 
 | 2 | Project Store 
 | 3 | Chat Store 
-| 4 | Responsive Core Layout  + Maintain State for Project Level Configuration + Profile Section 
 
 
 

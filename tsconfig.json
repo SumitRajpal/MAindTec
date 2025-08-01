@@ -2,9 +2,23 @@
   "extends": "./tsconfig.base.json",
   "compileOnSave": false,
   "files": [],
+  "paths": {
+    "@package/state": [
+      "./packages/state-management/src/index.ts"
+    ],
+    "@package/schema": [
+      "./packages/schemas/src/index.ts"
+    ]
+  },
   "references": [
     {
       "path": "./apps/synergy-portal"
+    },
+    {
+      "path": "./packages/state-management"
+    },
+    {
+      "path": "./packages/schemas"
     }
   ]
 }
