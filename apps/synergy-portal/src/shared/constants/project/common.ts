@@ -1,0 +1,2 @@
+export type FileExtension =
+      'pdf' | 'doc' | 'docx' | 'xls' | 'xlsx' | 'csv' | 'txt' | 'log' | 'json' | 'xml' | 'ppt' | 'pptx' | 'odp' | 'epub' | 'jpg' | 'jpeg' | 'png' | 'gif' | 'webp' | 'svg' | 'zip' | 'rar' | '7z' | 'tar' | 'js' | 'ts' | 'tsx' | 'ts' | 'mp3' | 'wav' | 'mp4' | 'avi' | 'mkv';
