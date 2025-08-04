@@ -11,7 +11,7 @@ export default function Index() {
           <div id="welcome">
             <h1>
               <span> Hello there, </span>
-              Welcome @maind-tec-project/synergy-portal 👋
+              Welcome
             </h1>
           </div>
 
