@@ -20,7 +20,7 @@
 |  | Plan |
 | ------ | ------ |
 | 1 | Project Level Store for configuring like darkmode + mobile view or desktop view ,permission matrix, etc + 
-| 2 | Project Store | Tab Store | Navbar Store | IconBar Store
+| 2 | Project ,StoreTab Store,  Navbar Store,  IconBar Store 
 | 3 | Chat Store 
 
 
