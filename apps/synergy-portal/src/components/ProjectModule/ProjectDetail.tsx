@@ -15,7 +15,6 @@ const ProjectsDetail = () => {
                         </section>
                   </div>
 
-                  {/* ChatLayout Area - Full Width on Mobile, 40% on Desktop */}
                   <aside
                         className="
       flex w-full md:w-[30%]

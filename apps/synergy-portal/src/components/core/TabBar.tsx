@@ -1,26 +1,11 @@
 import { useTabStore } from "@maind-tec-project/state-management";
 import { X } from "lucide-react";
-import { useState } from "react";
-
-const tabsData = [
-      { id: "1", label: "page.tsx" },
-      { id: "2", label: "layout.tsx" },
-      { id: "3", label: "Tooltip.tsx", },
-      { id: "4", label: "ChatHeader.tsx" },
-];
 
 export default function TabBar() {
-      const [selectedTab, setSelectedTab] = useState(tabsData[0].id);
-      const setTab = useTabStore((state) => state.setTab);
       const setCurrentTab = useTabStore((state) => state.setCurrentTab);
-      const getTabs = useTabStore((state) => state.getTabs);
+      const selectedTab = useTabStore((state) => state.currentTab?.id);
       const deleteTab = useTabStore((state) => state.deleteTab);
       const tabs = useTabStore((state) => state.tabs);
-      tabsData.forEach((tab) => {
-            if (!tabs.some((t) => t.id === tab.id)) {
-                  setTab({ id: tab.id, name: tab.label });
-            }
-      });
       return (
             <div className="w-full h-auto overflow-x-hidden overflow-y-hidden whitespace-nowrap no-scrollbar bg-transparent text-xs border-b border-gray-100 ">
                   <div className="flex">

@@ -39,7 +39,7 @@ const filterOptions = [
             options: ["High", "Medium", "Low"],
       },
 ];
-const FilterOption = () => {
+const FilterOption: React.FC = () => {
       return (
             <div className="h-auto w-72 bg-white border-r flex flex-col p-4 rounded-2xl shadow-sm">
                   <div>

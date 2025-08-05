@@ -9,7 +9,7 @@ export const projectJsonList: Projects = {
       "data": [
             {
                   "key": 1,
-                  "projectName": "Satellite Engine Design for Orbital Stability",
+                  "label": "Satellite Engine Design",
                   "description": "Modular engine unit for low-orbit satellites.",
                   "status": "active",
                   "stage": 3,
@@ -19,7 +19,7 @@ export const projectJsonList: Projects = {
             },
             {
                   "key": 2,
-                  "projectName": "Next-Gen Solar Integration in Urban Vehicles",
+                  "label": "Next-Gen Solar Integration",
                   "description": "High-efficiency solar panel module for cars.",
                   "status": "inactive",
                   "stage": 7,
@@ -29,7 +29,7 @@ export const projectJsonList: Projects = {
             },
             {
                   "key": 6,
-                  "projectName": "Deep Space Thermal Protection Tiles R&D",
+                  "label": "Deep Space Thermal ",
                   "description": "Thermal shielding tile for deep-space craft.",
                   "status": "active",
                   "stage": 9,
@@ -39,7 +39,7 @@ export const projectJsonList: Projects = {
             },
             {
                   "key": 7,
-                  "projectName": "Personalized Drug Capsule 3D Print Engine",
+                  "label": "3D Print Engine",
                   "description": "Custom drug capsule 3D printing prototype.",
                   "status": "inactive",
                   "stage": 4,
@@ -49,7 +49,7 @@ export const projectJsonList: Projects = {
             },
             {
                   "key": 8,
-                  "projectName": "Electric Propulsion System With Smart AI Control",
+                  "label": "Smart AI Control",
                   "description": "Electric propulsion unit with AI control logic.",
                   "status": "active",
                   "stage": 8,
@@ -59,7 +59,7 @@ export const projectJsonList: Projects = {
             },
             {
                   "key": 9,
-                  "projectName": "Race Car Carbon Fiber Body Engineering",
+                  "label": "Race Car Carbon Fiber",
                   "description": "Carbon fiber body panel for racing cars.",
                   "status": "active",
                   "stage": 6,
@@ -69,7 +69,7 @@ export const projectJsonList: Projects = {
             },
             {
                   "key": 10,
-                  "projectName": "Biometric Security for Cleanroom Access Systems",
+                  "label": "Biometric Security",
                   "description": "Biometric access hardware for lab environments.",
                   "status": "inactive",
                   "stage": 1,
@@ -79,7 +79,7 @@ export const projectJsonList: Projects = {
             },
             {
                   "key": 11,
-                  "projectName": "Reusable Rocket Nozzle Optimized for Liftoff",
+                  "label": "Reusable Rocket Nozzle",
                   "description": "Reusable rocket nozzle flow design.",
                   "status": "active",
                   "stage": 7,
@@ -89,7 +89,7 @@ export const projectJsonList: Projects = {
             },
             {
                   "key": 12,
-                  "projectName": "Voice UI Development for Car Consoles",
+                  "label": "Voice UI Development",
                   "description": "Voice-controlled system for car interiors.",
                   "status": "inactive",
                   "stage": 3,
@@ -99,7 +99,7 @@ export const projectJsonList: Projects = {
             },
             {
                   "key": 13,
-                  "projectName": "Orbital Fuel Injector Precision Engineering",
+                  "label": "Orbital Fuel Injector",
                   "description": "Advanced fuel injector for orbital vehicles.",
                   "status": "active",
                   "stage": 5,
@@ -109,7 +109,7 @@ export const projectJsonList: Projects = {
             },
             {
                   "key": 14,
-                  "projectName": "Medical Implants Coated with Radiation Shield",
+                  "label": "Medical Implants ",
                   "description": "Anti-radiation coating for medical implants.",
                   "status": "inactive",
                   "stage": 2,
@@ -119,7 +119,7 @@ export const projectJsonList: Projects = {
             },
             {
                   "key": 15,
-                  "projectName": "Mars Rover Suspension and Terrain Model",
+                  "label": "Mars Rover Suspension",
                   "description": "Autonomous rover chassis suspension model.",
                   "status": "active",
                   "stage": 10,

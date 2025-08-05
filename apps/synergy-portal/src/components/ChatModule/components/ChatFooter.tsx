@@ -1,13 +1,43 @@
-import { useTabStore } from '@maind-tec-project/state-management';
+import MetaInfo, { MetaInfoProps } from '@/components/ChatModule/atomic/MetaInfo';
+import { messageSchema, useChatStore, useProjectStore, useTabStore } from '@maind-tec-project/state-management';
 import {
       MicIcon,
       SendHorizonalIcon
 } from 'lucide-react';
 import { useState } from 'react';
-import MetaInfo, { MetaInfoProps } from '../atomic/MetaInfo';
 const ChatFooter = () => {
       const [input, setInput] = useState('');
       const getCurrentTab = useTabStore((state) => state.currentTab);
+      const projectId = useProjectStore((state) => state.getProjectId());
+      const currentUserId = "me_001"
+      // const setMessageToProject = useChatStore((state) => state.setMessageToProject);
+
+      const setMessageToFile = useChatStore((state) => state.setMessageToFile);
+
+      const sendMessage = () => {
+            const newMessage = {
+                  id: Date.now().toString(),
+                  senderId: currentUserId,
+                  text: 'Can we optimize this component?',
+                  timestamp: new Date().toLocaleTimeString(),
+                  pageName: getCurrentTab?.name || 'Unknown File',
+                  fileReference: {
+                        name: getCurrentTab?.name || 'Unknown File',
+                        path: 'components/ProjectCard.tsx',
+                  },
+            };
+
+            const parsed = messageSchema.safeParse(newMessage);
+            if (!parsed.success) {
+                  console.error(parsed.error);
+                  return;
+            }
+            // setMessageToProject(projectId, newMessage);
+            if (projectId && getCurrentTab) {
+                  setMessageToFile(projectId, getCurrentTab.id, newMessage);
+            }
+
+      };
       const metaInfo: MetaInfoProps = {
             fileReference: {
                   name: getCurrentTab?.name || 'Unknown File',
@@ -56,7 +86,7 @@ const ChatFooter = () => {
                                           <button className="text-mBlue-600 hover:text-mBlue-800">
                                                 <MicIcon className="h-5 w-5" />
                                           </button>
-                                          <button className="text-mBlue-600 hover:text-mBlue-800">
+                                          <button className="text-mBlue-600 hover:text-mBlue-800" onClick={sendMessage}>
                                                 <SendHorizonalIcon className="h-5 w-5" />
                                           </button>
                                     </div>

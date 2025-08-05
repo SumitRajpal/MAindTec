@@ -19,7 +19,7 @@ export enum Department {
 
 export interface ProductItem {
       key?: number;
-      projectName?: string;
+      label?: string;
       description?: string;
       status?: Status | string;
       stage?: number;

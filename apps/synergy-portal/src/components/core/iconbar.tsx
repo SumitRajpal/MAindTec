@@ -19,22 +19,8 @@ import {
 } from 'lucide-react';
 
 
-import NavBar from '@/components/core/NavBar';
-import TreeBar from '@/components/core/TreeBar';
-import { ReactNode } from 'react';
 
-interface SideBarItem {
-      component: ReactNode;
-}
 
-interface ActiveSideBarList {
-      [key: string]: SideBarItem;
-}
-
-export const activeSideBarList: ActiveSideBarList = {
-      "1": { component: <NavBar /> },
-      "2": { component: <TreeBar /> }
-}
 export default function IconBar() {
       const setSidebar = useSidebarStore((state) => state.setSidebar);
       const activeSidebar = useSidebarStore((state) => state.getActiveSidebar());
@@ -53,7 +39,6 @@ export default function IconBar() {
 
       return (
             <div className="bg-white border-r flex flex-col justify-between p-2 items-center">
-                  {/* Top Icons */}
                   <div className="flex flex-col gap-4">
                         {icons.map((item, index) => (
                               <Tooltip text={item.text} key={item.id}>
@@ -84,8 +69,6 @@ export default function IconBar() {
                               </Tooltip>
                         ))}
                   </div>
-
-                  {/* Bottom Icons */}
                   <div className="flex flex-col gap-4 items-center text-gray-500">
                         <User size={18} className="hover:text-gray-900 transition-colors" />
                         <Settings size={18} className="hover:text-gray-900 transition-colors" />

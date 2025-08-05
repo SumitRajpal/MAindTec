@@ -1,7 +1,9 @@
+import MetaInfo from "@/components/ChatModule/atomic/MetaInfo";
+import { useFileMessages } from "@/hooks/getChatByFile";
+import { useProjectStore, useTabStore } from "@maind-tec-project/state-management";
 import clsx from "clsx";
 import { AtSign, Bot, Paperclip, Slash } from "lucide-react";
 import { useEffect, useRef } from "react";
-import MetaInfo from "../atomic/MetaInfo";
 export interface FileReference {
       name: string;
       path: string;
@@ -35,7 +37,6 @@ const EmptyAI = () => {
                               Ask MAind AI is powered by AI, so mistakes are possible. Review the output carefully before relying on it.
                         </p>
 
-                        {/* Command Hints */}
                         <div className="w-full mt-2 space-y-2 text-sm text-gray-400">
                               <div className="flex items-center justify-center space-x-2">
                                     <Paperclip className="w-4 h-4" />
@@ -58,98 +59,16 @@ const EmptyAI = () => {
       );
 };
 const ChatMessages = () => {
-      const messages = [
-            {
-                  id: '2',
-                  senderId: 'me_001',
-                  text: 'Tell eme why this component looks like this ?',
-                  timestamp: '14:26',
-                  pageName: 'ProjectCard.tsx',
-                  fileReference: {
-                        name: 'ProjectCard.tsx',
-                        path: 'components/ProjectCard.tsx',
-
-                  }
-            },
-            {
-                  id: '1',
-                  senderId: 'user_123',
-                  text: 'Hey! Check this out!',
-                  timestamp: '14:25',
-                  pageName: 'ProjectCard.tsx',
-                  fileReference: {
-                        name: 'ProjectCard.tsx',
-                        path: 'components/ProjectCard.tsx',
-
-                  },
-            },
-            {
-                  id: '3',
-                  senderId: 'me_001',
-                  text: 'Tell eme why this component looks like this ?',
-                  timestamp: '14:26',
-                  pageName: 'ProjectCard.tsx',
-                  fileReference: {
-                        name: 'ProjectCard.tsx',
-                        path: 'components/ProjectCard.tsx',
-
-                  }
-            },
-            {
-                  id: '4',
-                  senderId: 'user_123',
-                  text: 'Lst messageWS',
-                  timestamp: '14:25',
-                  pageName: 'ProjectCard.tsx',
-                  fileReference: {
-                        name: 'ProjectCard.tsx',
-                        path: 'components/ProjectCard.tsx',
-
-                  },
-            },
-            {
-                  id: '5',
-                  senderId: 'me_001',
-                  text: 'Tell eme why this component looks like this ?',
-                  timestamp: '14:26',
-                  pageName: 'ProjectCard.tsx',
-                  fileReference: {
-                        name: 'ProjectCard.tsx',
-                        path: 'components/ProjectCard.tsx',
-
-                  }
-            },
-            {
-                  id: '6',
-                  senderId: 'me_001',
-                  text: 'Tell eme why this component looks like this ?',
-                  timestamp: '14:26',
-                  pageName: 'ProjectCard.tsx',
-                  fileReference: {
-                        name: 'ProjectCard.tsx',
-                        path: 'components/ProjectCard.tsx',
-
-                  }
-            },
-            {
-                  id: '7',
-                  senderId: 'me_001',
-                  text: 'Tell eme why this component looks like this ?',
-                  timestamp: '14:26',
-                  pageName: 'ProjectCard.tsx',
-                  fileReference: {
-                        name: 'ProjectCard.tsx',
-                        path: 'components/ProjectCard.tsx',
-
-                  }
-            }
-      ];
+      const getCurrentTab = useTabStore((state) => state.currentTab);
+      const projectId = useProjectStore((state) => state.getProjectId());
       const currentUserId = "me_001"
       const messagesEndRef = useRef<HTMLDivElement>(null);
-
+      const { messages } = useFileMessages(projectId, getCurrentTab?.id)
       useEffect(() => {
             messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
       }, [messages]);
+
+
       return (
 
             <div className="flex-1 px-4 py-6">

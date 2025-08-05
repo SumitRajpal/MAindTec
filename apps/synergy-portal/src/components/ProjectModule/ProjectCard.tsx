@@ -1,5 +1,6 @@
 'use client';
 
+import { File, Stamp } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import { ProductItem } from "./ProjectList";
 // Inspiration Design 1. https://dribbble.com/shots/19162973--FromTheArchives-tvOS-GitHub-app-Concept
@@ -39,7 +40,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             >
                   <div className="flex justify-between items-start mb-3">
                         <h2 className="text-lg font-semibold text-gray-900">
-                              {project.projectName}
+                              {project.label}
                         </h2>
                         <span className="text-sm text-gray-500 whitespace-nowrap">
                               {project.timestamp}
@@ -52,21 +53,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                   <div className="mt-4 space-y-3">
                         <div className="flex justify-between items-center text-sm text-gray-700">
                               <div className="flex items-center gap-1">
-                                    <span className="text-gray-800">✔</span>
-                                    <span>0 done</span>
+                                    <span className="text-gray-800"><Stamp size={12} /></span>
+                                    <span>{project.status}</span>
                               </div>
                               <div className="flex items-center gap-1">
-                                    <span>🌙</span>
-                                    <span>0 in progress</span>
+                                    <span><File size={12} /></span>
+                                    <span>{project.files}</span>
                               </div>
                               <div className="flex items-center gap-1">
-                                    <span className="text-xs bg-gray-200 px-2 py-1 rounded-full">
+                                    <span className="text-xs bg-mBlue-100 px-2 py-1 rounded-full">
                                           {project.department}
                                     </span>
                               </div>
                         </div>
-
-                        {/* Progress Bar */}
                         <ProgressBar value={((project.stage ?? 0) / 10) * 100} />
                   </div>
             </div>

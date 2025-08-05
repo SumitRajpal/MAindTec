@@ -6,10 +6,11 @@
 | 2 | Folder Structure + Setting Absolute path | Done | Fri/1st/August
 | 3 | UI + State + Zod Libraries Install | Done | Fri/1st/August
 | 4 | Responsive Core Layout  + Maintain State for Project Level Configuration + Profile Section | Done | Sat/2nd/August
-| 5 | Project List Component + Tree Structure + All Project Mock data | Done | Sat/2nd/August
-| 6 | Chat Core component  + communication setup with current project state + Chat state  | Pending | Sun/3rd/Aug
-| 7 | Design Landing Page + Add on Features like searching, filtering, etc | Pending | Mon/4th/August
-| 8 | Adding Theme + Improvements + Polishing | Pending | Tue/5th/August
+| 5 | Project List Component + Tree Structure + All Project Mock data + Chat Tabs | Done | Sat/2nd/August
+| 6 | Chat Core component  + communication setup with current project state + Chat state  | Done | Sun/3rd/Aug
+| 7 | Design Landing Page + Add on Features like searching, filtering, etc | Done | Mon/4th/August
+| 8 | Adding Theme + Improvements + Polishing | Done | Tue/5th/August
+| 8 | Chat Bugs Removal | Done | Web/6th/August
 
 
 
@@ -19,7 +20,7 @@
 |  | Plan |
 | ------ | ------ |
 | 1 | Project Level Store for configuring like darkmode + mobile view or desktop view ,permission matrix, etc + 
-| 2 | Project Store 
+| 2 | Project Store | Tab Store | Navbar Store | IconBar Store
 | 3 | Chat Store 
 
 

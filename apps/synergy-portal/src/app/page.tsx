@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import { animate, motion, useMotionValue } from "framer-motion";
 import { Activity, LockIcon, LucideMail } from "lucide-react";
@@ -25,12 +26,12 @@ export function Input({ className = "", ...props }) {
 
 export default function Index() {
   useEffect(() => {
-    document.title = "Qatalog - Work Hub";
+    document.title = "MAind AI - Empower";
   }, []);
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: any) => {
     setMousePosition({ x: e.clientX, y: e.clientY });
   };
 
