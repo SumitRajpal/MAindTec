@@ -3,7 +3,7 @@ import React, { createContext } from "react";
 
 // Create Context
 export const SideMenuContext = createContext({
-  sendMessage: (key: string) => {
+  sendMessage: (key: any) => {
     // 
   },
 });
@@ -14,29 +14,12 @@ interface SideMenuProviderProps {
 
 export const SideMenuProvider: React.FC<SideMenuProviderProps> = ({ children }) => {
 
-  const sendMessage = (key: string) => {
-    switch (key) {
-      case "save":
-
-        sendUpdateRequest("save");
-        break;
-
-      case "shuffle":
-
-        sendUpdateRequest("shuffle");
-        break;
-
-      case "hint":
-        sendUpdateRequest("hint");
-        break;
-
-      default:
-        console.warn("Invalid action:", key);
-    }
+  const sendMessage = (newMessage: any) => {
+    // setMessageToFile(projectId, getCurrentTab.id, newMessage);
   };
 
 
-  const sendUpdateRequest = (key: string) => {
+  const sendUpdateRequest = (key: any) => {
     console.log(`Sending request for: ${key}`);
     // Here you can add your API call logic using fetch/axios
   };

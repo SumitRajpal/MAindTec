@@ -19,8 +19,11 @@ const TreeBar: React.FC = () => {
       const [activeKey, setActiveKey] = useState<string | string[]>('1');
 
       const handleChange = (key: string | string[]) => {
-            setActiveKey(key);
-            router.push(`/dashboard/project/${key}`);
+            if (key.length) {
+                  setActiveKey(key);
+                  router.push(`/dashboard/project/${key}`);
+            }
+
       }
       return (
             <div className="h-auto w-64 bg-white border-r flex flex-col justify-stretch">
@@ -30,7 +33,7 @@ const TreeBar: React.FC = () => {
                                     SR
                               </div>
                               <div className="flex-1">
-                                    <p className="text-sm font-medium">Sumit Rajpal</p>
+                                    <p className="text-sm font-medium">Projects</p>
                                     <p className="text-xs text-gray-500">sumitr@iitk.ac.in</p>
                               </div>
                               <div className="bg-gray-100 p-2 rounded-md transform transition-transform duration-300 ease-in-out md:hidden">

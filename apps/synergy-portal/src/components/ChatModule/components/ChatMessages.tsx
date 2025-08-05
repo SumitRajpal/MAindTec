@@ -2,7 +2,7 @@ import MetaInfo from "@/components/ChatModule/atomic/MetaInfo";
 import { useFileMessages } from "@/hooks/getChatByFile";
 import { useProjectStore, useTabStore } from "@maind-tec-project/state-management";
 import clsx from "clsx";
-import { AtSign, Bot, Paperclip, Slash } from "lucide-react";
+import { Bot, Paperclip } from "lucide-react";
 import { useEffect, useRef } from "react";
 export interface FileReference {
       name: string;
@@ -41,16 +41,20 @@ const EmptyAI = () => {
                               <div className="flex items-center justify-center space-x-2">
                                     <Paperclip className="w-4 h-4" />
                                     <span>
-                                          Type <code className="font-mono text-gray-600">#</code> to attach context
+                                          <code className="font-mono text-gray-600">Chat with project</code>
                                     </span>
                               </div>
                               <div className="flex items-center justify-center space-x-2">
-                                    <AtSign className="w-4 h-4" />
-                                    <span>Chat with extensions</span>
+                                    <Paperclip className="w-4 h-4" />
+                                    <span>
+                                          <code className="font-mono text-gray-600">Chat with files</code>
+                                    </span>
                               </div>
                               <div className="flex items-center justify-center space-x-2">
-                                    <Slash className="w-4 h-4" />
-                                    <span>Type <code className="font-mono text-gray-600">/</code> to use commands</span>
+                                    <Paperclip className="w-4 h-4" />
+                                    <span>
+                                          <code className="font-mono text-gray-600">Use dropdown chat options project or file</code>
+                                    </span>
                               </div>
                         </div>
 
@@ -66,7 +70,7 @@ const ChatMessages = () => {
       const { messages } = useFileMessages(projectId, getCurrentTab?.id)
       useEffect(() => {
             messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-      }, [messages]);
+      }, [messages, getCurrentTab]);
 
 
       return (
@@ -74,7 +78,7 @@ const ChatMessages = () => {
             <div className="flex-1 px-4 py-6">
                   <div className="max-w-3xl mx-auto space-y-6">
 
-                        {messages.length ? messages?.map((msg) => {
+                        {messages.length ? messages?.map((msg, index) => {
                               const isOwn = msg.senderId === currentUserId;
 
                               return (

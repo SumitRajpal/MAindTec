@@ -1,5 +1,6 @@
 'use client';
 
+import Logo from '@/assets/logo.svg';
 import { useSidebarStore } from '@maind-tec-project/state-management';
 import {
       BarChart,
@@ -16,6 +17,7 @@ import {
       StickyNote,
       Users
 } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 export default function NavigationBar() {
       const setNavBar = useSidebarStore((state) => state.setNavbar);
@@ -24,11 +26,11 @@ export default function NavigationBar() {
                   <div className="flex flex-col gap-4">
                         <div className="flex items-center gap-3 rounded-md cursor-pointer">
                               <div className="h-8 w-8  text-center text-sm flex items-center justify-center rounded-full">
-                                    {/* <Image src={Logo} alt="Logo" width={200} height={200} /> */}
+                                    <Image src={Logo} alt="Logo" width={200} height={200} />
                               </div>
                               <div className="flex-1">
-                                    <p className="text-sm font-medium">Sumit Rajpal</p>
-                                    <p className="text-xs text-gray-500">sumitr@iitk.ac.in</p>
+                                    <p className="text-sm font-medium">MAind Tec</p>
+                                    <p className="text-xs text-gray-500">AI Inside</p>
                               </div>
                               <div className="bg-gray-100 p-2 rounded-md transform transition-transform duration-300 ease-in-out md:hidden" onClick={() => { setNavBar(false) }}>
                                     <PanelRightOpen size={16} />

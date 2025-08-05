@@ -2,6 +2,7 @@
 'use client';
 import { animate, motion, useMotionValue } from "framer-motion";
 import { Activity, LockIcon, LucideMail } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export function Button({ children, className = "", ...props }) {
@@ -25,6 +26,7 @@ export function Input({ className = "", ...props }) {
 }
 
 export default function Index() {
+  const router = useRouter();
   useEffect(() => {
     document.title = "MAind AI - Empower";
   }, []);
@@ -58,14 +60,11 @@ export default function Index() {
           transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
         >
           <h2 className="text-4xl font-bold leading-tight mb-4">
-            Empower Your Finances with <br /> Smart Solutions
+            Empower Your System with <br /> Smart Solutions
           </h2>
           <p className="text-base md:text-lg text-white/80 mb-8">
-            Transform your financial management with intuitive, data-driven solutions for better efficiency, accuracy, and growth.
+            Transform your system management with intuitive, data-driven solutions for better efficiency, accuracy, and growth.
           </p>
-          <Button className="bg-white text-blue-800 hover:bg-blue-100">
-            Start 14 days free trial
-          </Button>
         </motion.div>
 
         <motion.div
@@ -97,7 +96,7 @@ export default function Index() {
               <LockIcon className="absolute left-4 top-3 w-5 h-5 text-gray-400" />
             </div>
 
-            <Button className="w-full bg-white border border-gray-300 hover:bg-gray-100 text-gray-700">
+            <Button className="w-full bg-white border border-gray-300 hover:bg-gray-100 text-gray-700" onClick={() => router.push('/dashboard/project')}>
               <Activity className="w-5 h-5" /> Login
             </Button>
 

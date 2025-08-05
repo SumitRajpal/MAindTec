@@ -1,24 +1,36 @@
 import MetaInfo, { MetaInfoProps } from '@/components/ChatModule/atomic/MetaInfo';
+import { SideMenuContext } from '@/context/SideMenuContext';
+import { useFileMessages } from '@/hooks/getChatByFile';
 import { messageSchema, useChatStore, useProjectStore, useTabStore } from '@maind-tec-project/state-management';
+import clsx from 'clsx';
 import {
       MicIcon,
       SendHorizonalIcon
 } from 'lucide-react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 const ChatFooter = () => {
       const [input, setInput] = useState('');
+      const [select, setSelect] = useState('file');
       const getCurrentTab = useTabStore((state) => state.currentTab);
       const projectId = useProjectStore((state) => state.getProjectId());
       const currentUserId = "me_001"
-      // const setMessageToProject = useChatStore((state) => state.setMessageToProject);
+      const { sendMessage } = useContext(SideMenuContext);
 
       const setMessageToFile = useChatStore((state) => state.setMessageToFile);
-
-      const sendMessage = () => {
+      const { count } = useFileMessages(projectId, getCurrentTab?.id)
+      const send = () => {
+            if (!getCurrentTab?.id) {
+                  alert('Please select a file to chat with.');
+                  return;
+            }
+            if (!input.trim()) {
+                  alert('Please enter a message.');
+                  return;
+            }
             const newMessage = {
-                  id: Date.now().toString(),
+                  id: (count + 1).toString(),
                   senderId: currentUserId,
-                  text: 'Can we optimize this component?',
+                  text: input,
                   timestamp: new Date().toLocaleTimeString(),
                   pageName: getCurrentTab?.name || 'Unknown File',
                   fileReference: {
@@ -27,14 +39,34 @@ const ChatFooter = () => {
                   },
             };
 
+
+
             const parsed = messageSchema.safeParse(newMessage);
             if (!parsed.success) {
                   console.error(parsed.error);
                   return;
             }
+            console.log(select, 'select');
             // setMessageToProject(projectId, newMessage);
             if (projectId && getCurrentTab) {
+                  // sendMessage(newMessage)
                   setMessageToFile(projectId, getCurrentTab.id, newMessage);
+                  setInput('');
+                  setTimeout(() => {
+                        const aiMessage = {
+                              id: (count + 1).toString(),
+                              senderId: 'AI',
+                              text: 'Here is your MAind answer for ' + input,
+                              timestamp: new Date().toLocaleTimeString(),
+                              pageName: getCurrentTab?.name || 'Unknown File',
+                              fileReference: {
+                                    name: getCurrentTab?.name || 'Unknown File',
+                                    path: 'components/ProjectCard.tsx',
+                              },
+                        };
+                        setMessageToFile(projectId, getCurrentTab.id, aiMessage);
+                  }
+                        , 1000);
             }
 
       };
@@ -75,9 +107,9 @@ const ChatFooter = () => {
 
                                     <div className="text-xs text-mBlue-600 hidden sm:block">
                                           <span className="mr-1">Ask</span>
-                                          <select className="bg-transparent outline-none text-sm">
-                                                <option>Project</option>
-                                                <option>File</option>
+                                          <select className="bg-transparent outline-none text-sm" onChange={(e) => setSelect(e.target.value)} value={select}>
+                                                <option value={'project'}>Project</option>
+                                                <option value={'file'}>File</option>
                                           </select>
                                     </div>
 
@@ -86,7 +118,11 @@ const ChatFooter = () => {
                                           <button className="text-mBlue-600 hover:text-mBlue-800">
                                                 <MicIcon className="h-5 w-5" />
                                           </button>
-                                          <button className="text-mBlue-600 hover:text-mBlue-800" onClick={sendMessage}>
+
+                                          <button className={clsx(
+                                                'text-mBlue-600 hover:text-mBlue-800',
+                                                !input.trim() ? 'hover:text-red-800' : 'hover:text-green-800'
+                                          )} onClick={send} >
                                                 <SendHorizonalIcon className="h-5 w-5" />
                                           </button>
                                     </div>
