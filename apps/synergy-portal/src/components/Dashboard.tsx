@@ -1,7 +1,7 @@
 'use client';
 
-import IconBar from "@/components/core/iconbar";
-import Sidebar from "@/components/core/navbar";
+import IconBar, { activeSideBarList } from "@/components/core/iconbar";
+import { useSidebarStore } from "@maind-tec-project/state-management";
 import { ReactNode, Suspense, useState } from "react";
 
 interface DashboardProps {
@@ -9,6 +9,7 @@ interface DashboardProps {
 }
 export default function Dashboard({ children }: DashboardProps) {
       const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+      const activeSidebar = useSidebarStore((state) => state.getActiveSidebar());
       return (
             <Suspense fallback={<div>Loading SideBar</div>}>
 
@@ -19,7 +20,9 @@ export default function Dashboard({ children }: DashboardProps) {
 
                               <aside className="hidden md:flex flex-row  overflow-y-auto">
                                     <IconBar />
-                                    <Sidebar />
+                                    {activeSideBarList[activeSidebar ? activeSidebar : '1']?.component}
+
+
                               </aside>
 
                               {mobileSidebarOpen && (
@@ -35,7 +38,7 @@ export default function Dashboard({ children }: DashboardProps) {
                               >
                                     <div className="flex flex-row  h-full">
                                           <IconBar />
-                                          <Sidebar />
+                                          {activeSideBarList[activeSidebar ? activeSidebar : '1']?.component}
                                     </div>
                               </aside>
 

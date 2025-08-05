@@ -17,12 +17,12 @@ import {
       Users,
 } from 'lucide-react';
 
-export default function Sidebar() {
+export default function NavBar() {
       return (
             <div className="h-auto w-64 bg-white border-r flex flex-col justify-between p-4">
                   <div>
                         <div className="flex items-center justify-between mb-6">
-                              <h1 className="text-lg font-semibold">Acme Inc</h1>
+                              <h1 className="text-lg font-semibold">IITKd</h1>
                         </div>
                         <div className="flex items-center gap-2 mb-6">
                               <button className="flex-1 bg-black text-white text-sm px-3 py-2 rounded-md flex items-center gap-2">
@@ -38,7 +38,7 @@ export default function Sidebar() {
                               <NavItem icon={<LayoutDashboard size={16} />} label="Dashboard" />
                               <NavItem icon={<FolderKanban size={16} />} label="Lifecycle" />
                               <NavItem icon={<BarChart size={16} />} label="Analytics" />
-                              <NavItem icon={<Home size={16} />} label="Projects" />
+                              <NavItem icon={<Home size={16} />} label="Projects" path="/dashboard/project" />
                               <NavItem icon={<Users size={16} />} label="Team" />
                               <div className="mt-6 mb-1 text-xs text-gray-500">Documents</div>
                               <NavItem icon={<BookText size={16} />} label="Data Library" />
@@ -69,7 +69,7 @@ export default function Sidebar() {
       );
 }
 
-function NavItem({ icon, label }: { icon: React.ReactNode; label: string }) {
+function NavItem({ icon, label, path }: { icon: React.ReactNode; label: string, path?: string }) {
       return (
             <div className="flex items-center gap-3 text-sm text-gray-700 px-2 py-2 rounded-md hover:bg-gray-100 cursor-pointer">
                   {icon}

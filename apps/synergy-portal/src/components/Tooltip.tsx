@@ -11,7 +11,7 @@ const Tooltip: React.FC<TooltipProps> = ({ text, children }) => {
                   {children}
                   <div
                         className="rounded-lg absolute left-full top-1/2 -translate-y-1/2 ml-3
-                   bg-gray-800 text-white text-xs font-medium
+                   bg-mBlue-800 text-white text-xs font-medium
                    px-3 py-1  shadow-lg
                    whitespace-nowrap z-20
                    opacity-0 group-hover:opacity-100

@@ -17,11 +17,22 @@ import {
       Sparkles,
       User,
 } from 'lucide-react';
-import Sidebar from './navbar';
-import TreeBar from './TreeBar';
 
-export const activeSideBarList = {
-      "1": { component: <Sidebar /> },
+
+import NavBar from '@/components/core/NavBar';
+import TreeBar from '@/components/core/TreeBar';
+import { ReactNode } from 'react';
+
+interface SideBarItem {
+      component: ReactNode;
+}
+
+interface ActiveSideBarList {
+      [key: string]: SideBarItem;
+}
+
+export const activeSideBarList: ActiveSideBarList = {
+      "1": { component: <NavBar /> },
       "2": { component: <TreeBar /> }
 }
 export default function IconBar() {
@@ -42,19 +53,30 @@ export default function IconBar() {
 
       return (
             <div className="bg-white border-r flex flex-col justify-between p-2 items-center">
+                  {/* Top Icons */}
                   <div className="flex flex-col gap-4">
                         {icons.map((item, index) => (
                               <Tooltip text={item.text} key={item.id}>
-
-                                    <div key={index} className={clsx(
-                                          'relative flex justify-center',
-                                          activeSidebar == item.id ? 'bg-gray-100 rounded-xl' : ''
-                                    )} onClick={() => { setSidebar(item.id) }}>
-                                          <button className="p-2 rounded-md hover:bg-gray-100 transition-all">
+                                    <div
+                                          className={clsx(
+                                                'relative flex justify-center',
+                                                activeSidebar === item.id ? 'bg-gray-100 rounded-xl' : ''
+                                          )}
+                                          onClick={() => setSidebar(item.id)}
+                                    >
+                                          <button
+                                                className={clsx(
+                                                      'p-2 rounded-md transition-all',
+                                                      activeSidebar === item.id
+                                                            ? 'text-mBlue-600'
+                                                            : 'text-gray-500 hover:bg-gray-100 hover:text-gray-900'
+                                                )}
+                                          >
                                                 {item.icon}
                                           </button>
+
                                           {item.notify && (
-                                                <span className="absolute -top-1 -right-1 text-[10px] bg-blue-600 text-white rounded-full px-1.5 h-4 flex items-center justify-center leading-none">
+                                                <span className="absolute -top-1 -right-1 text-[10px] bg-mBlue-600 text-white rounded-full px-1.5 h-4 flex items-center justify-center leading-none">
                                                       {item.count}
                                                 </span>
                                           )}
@@ -62,10 +84,13 @@ export default function IconBar() {
                               </Tooltip>
                         ))}
                   </div>
-                  <div className="flex flex-col gap-4 items-center">
-                        <User size={18} />
-                        <Settings size={18} />
+
+                  {/* Bottom Icons */}
+                  <div className="flex flex-col gap-4 items-center text-gray-500">
+                        <User size={18} className="hover:text-gray-900 transition-colors" />
+                        <Settings size={18} className="hover:text-gray-900 transition-colors" />
                   </div>
             </div>
+
       );
 }

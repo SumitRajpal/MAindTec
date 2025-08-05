@@ -22,7 +22,7 @@ export default function TabBar() {
             }
       });
       return (
-            <div className="w-full h-auto overflow-x-hidden overflow-y-hidden whitespace-nowrap no-scrollbar bg-transparent text-xs border-b border-gray-200 ">
+            <div className="w-full h-auto overflow-x-hidden overflow-y-hidden whitespace-nowrap no-scrollbar bg-transparent text-xs border-b border-gray-100 ">
                   <div className="flex">
                         {tabs.map((tabItem) => {
                               const isSelected = (tabItem.id === selectedTab);
@@ -35,14 +35,14 @@ export default function TabBar() {
             cursor-pointer truncate border-b-2 transition-all duration-200 ease-in-out
             ${isSelected
                                                       ? "bg-gray-100 text-black border-gray-300"
-                                                      : "hover:bg-gray-100 text-gray-700 border-transparent"
+                                                      : "hover:bg-gray-100 text-mBlue-700 border-transparent"
                                                 }
             `}
                                     >
                                           <span className="truncate">{tabItem.name}</span>
 
                                           <X
-                                                className="ml-3 h-4 w-4 text-gray-400 hover:text-red-500 transition-colors duration-150"
+                                                className="ml-3 h-4 w-4 text-gray-400 hover:text-mMaroon-500 transition-colors duration-150"
                                                 onClick={(e) => {
                                                       deleteTab(tabItem.id);
 

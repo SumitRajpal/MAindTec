@@ -32,30 +32,43 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       };
 
       return (
-            <div id={project.key + '-projectItem'} className="w-full cursor-pointer max-w-sm bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out p-5 space-y-4" onClick={() => project.key && handleNavigation(project.key)} >
-
-                  <div className="flex justify-between items-start">
-                        <h2 className="text-lg font-semibold text-gray-900">{project.projectName}</h2>
-                        <span className="text-sm text-gray-500 whitespace-nowrap">{project.timestamp}</span>
+            <div
+                  id={project.key + '-projectItem'}
+                  className="w-full max-w-sm h-full flex flex-col cursor-pointer bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out p-5"
+                  onClick={() => project.key && handleNavigation(project.key)}
+            >
+                  <div className="flex justify-between items-start mb-3">
+                        <h2 className="text-lg font-semibold text-gray-900">
+                              {project.projectName}
+                        </h2>
+                        <span className="text-sm text-gray-500 whitespace-nowrap">
+                              {project.timestamp}
+                        </span>
                   </div>
 
-                  <div className="text-sm text-gray-400">{project.description}</div>
-
-                  <div className="flex justify-between items-center text-sm text-gray-700">
-                        <div className="flex items-center gap-1">
-                              <span className="text-gray-800">✔</span>
-                              <span>0 done</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                              <span>🌙</span>
-                              <span>0 in progress</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                              <span className="text-xs bg-gray-200 px-2 py-1 rounded-full">{project.department}</span>
-                        </div>
+                  <div className="text-sm text-gray-500 flex-1 overflow-hidden line-clamp-5">
+                        {project.description}
                   </div>
+                  <div className="mt-4 space-y-3">
+                        <div className="flex justify-between items-center text-sm text-gray-700">
+                              <div className="flex items-center gap-1">
+                                    <span className="text-gray-800">✔</span>
+                                    <span>0 done</span>
+                              </div>
+                              <div className="flex items-center gap-1">
+                                    <span>🌙</span>
+                                    <span>0 in progress</span>
+                              </div>
+                              <div className="flex items-center gap-1">
+                                    <span className="text-xs bg-gray-200 px-2 py-1 rounded-full">
+                                          {project.department}
+                                    </span>
+                              </div>
+                        </div>
 
-                  <ProgressBar value={(((project.stage ?? 0) / 10) * 100)} />
+                        {/* Progress Bar */}
+                        <ProgressBar value={((project.stage ?? 0) / 10) * 100} />
+                  </div>
             </div>
       );
 };

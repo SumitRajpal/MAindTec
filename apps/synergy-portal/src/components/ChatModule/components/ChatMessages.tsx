@@ -21,17 +21,16 @@ const EmptyAI = () => {
             <div className="flex items-center justify-center h-full bg-transparent px-4">
                   <div className="flex flex-col items-center text-center space-y-6 max-w-md">
 
-                        {/* Icon */}
+
                         <div className="text-gray-300">
                               <Bot className="w-12 h-12" strokeWidth={1.5} />
                         </div>
 
-                        {/* Heading */}
                         <h1 className="text-2xl font-semibold text-gray-800 tracking-tight">
                               Ask MAind AI
                         </h1>
 
-                        {/* Description */}
+
                         <p className="text-sm text-gray-500 leading-relaxed">
                               Ask MAind AI is powered by AI, so mistakes are possible. Review the output carefully before relying on it.
                         </p>
@@ -148,7 +147,6 @@ const ChatMessages = () => {
       const currentUserId = "me_001"
       const messagesEndRef = useRef<HTMLDivElement>(null);
 
-      // Auto-scroll to bottom
       useEffect(() => {
             messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
       }, [messages]);
@@ -175,12 +173,12 @@ const ChatMessages = () => {
                                                 </div>
                                           )}
 
-                                          {/* Bubble */}
+
                                           <div
                                                 className={clsx(
                                                       'px-4 py-3 rounded-xl shadow max-w-[75%] break-words text-sm',
                                                       isOwn
-                                                            ? 'bg-[#1f2937] text-white rounded-br-none'
+                                                            ? 'bg-mBlue-600 text-white rounded-br-none'
                                                             : 'bg-[#f3f4f6] text-gray-900 rounded-bl-none'
                                                 )}
                                           >

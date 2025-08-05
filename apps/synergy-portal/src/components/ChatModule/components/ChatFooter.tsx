@@ -1,13 +1,19 @@
 import { useTabStore } from '@maind-tec-project/state-management';
 import {
-      BugIcon,
       MicIcon,
       SendHorizonalIcon
 } from 'lucide-react';
 import { useState } from 'react';
+import MetaInfo, { MetaInfoProps } from '../atomic/MetaInfo';
 const ChatFooter = () => {
       const [input, setInput] = useState('');
       const getCurrentTab = useTabStore((state) => state.currentTab);
+      const metaInfo: MetaInfoProps = {
+            fileReference: {
+                  name: getCurrentTab?.name || 'Unknown File',
+                  path: '',
+            },
+      };
       return (
 
             <div className=" bg-gray-50 px-4 py-2">
@@ -16,13 +22,12 @@ const ChatFooter = () => {
 
                               <div className="flex items-center justify-between text-xs text-gray-700">
                                     <div className="flex items-center gap-2 flex-wrap">
-                                          <button className="bg-gray-200 text-gray-700 text-[10px] px-2 py-0.5 rounded font-medium">
+                                          <button className="bg-gray-100 text-mBlue-700 text-[10px] px-2 py-0.5 rounded font-medium">
                                                 Add Context
                                           </button>
                                           <div className="flex items-center gap-1">
-                                                <BugIcon className="h-4 w-4 text-blue-600" />
-                                                <span className="text-sm text-gray-800">{getCurrentTab?.name}</span>
-                                                <span className="text-xs text-gray-400">Current file</span>
+
+                                                {getCurrentTab?.id && <MetaInfo fileReference={metaInfo.fileReference} />}
                                           </div>
                                     </div>
                               </div>
@@ -38,7 +43,7 @@ const ChatFooter = () => {
 
 
 
-                                    <div className="text-xs text-gray-600 hidden sm:block">
+                                    <div className="text-xs text-mBlue-600 hidden sm:block">
                                           <span className="mr-1">Ask</span>
                                           <select className="bg-transparent outline-none text-sm">
                                                 <option>Project</option>
@@ -48,10 +53,10 @@ const ChatFooter = () => {
 
                                     <div className="flex gap-2 text-gray-500">
 
-                                          <button className="hover:text-gray-700">
+                                          <button className="text-mBlue-600 hover:text-mBlue-800">
                                                 <MicIcon className="h-5 w-5" />
                                           </button>
-                                          <button className="text-blue-600 hover:text-blue-800">
+                                          <button className="text-mBlue-600 hover:text-mBlue-800">
                                                 <SendHorizonalIcon className="h-5 w-5" />
                                           </button>
                                     </div>
