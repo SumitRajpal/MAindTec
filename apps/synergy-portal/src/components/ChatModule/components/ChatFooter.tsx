@@ -10,16 +10,18 @@ import {
 import { useContext, useState } from 'react';
 const ChatFooter = () => {
       const [input, setInput] = useState('');
-      const [select, setSelect] = useState('file');
       const getCurrentTab = useTabStore((state) => state.currentTab);
       const projectId = useProjectStore((state) => state.getProjectId());
       const currentUserId = "me_001"
       const { sendMessage } = useContext(SideMenuContext);
 
       const setMessageToFile = useChatStore((state) => state.setMessageToFile);
+      const setMessageToProject = useChatStore((state) => state.setMessageToProject);
+      const setChatType = useChatStore((state) => state.setChatType);
+      const getChatType = useChatStore((state) => state.chatType);
       const { count } = useFileMessages(projectId, getCurrentTab?.id)
       const send = () => {
-            if (!getCurrentTab?.id) {
+            if (!getCurrentTab?.id && getChatType === 'file') {
                   alert('Please select a file to chat with.');
                   return;
             }
@@ -28,13 +30,13 @@ const ChatFooter = () => {
                   return;
             }
             const newMessage = {
-                  id: (count + 1).toString(),
+                  id: new Date().toLocaleTimeString(),
                   senderId: currentUserId,
                   text: input,
                   timestamp: new Date().toLocaleTimeString(),
-                  pageName: getCurrentTab?.name || 'Unknown File',
+                  pageName: getChatType == 'project' ? 'Project' : getCurrentTab?.name || 'Unknown File',
                   fileReference: {
-                        name: getCurrentTab?.name || 'Unknown File',
+                        name: getChatType == 'project' ? 'Project' : getCurrentTab?.name || 'Unknown File',
                         path: 'components/ProjectCard.tsx',
                   },
             };
@@ -46,25 +48,33 @@ const ChatFooter = () => {
                   console.error(parsed.error);
                   return;
             }
-            console.log(select, 'select');
             // setMessageToProject(projectId, newMessage);
             if (projectId && getCurrentTab) {
                   // sendMessage(newMessage)
-                  setMessageToFile(projectId, getCurrentTab.id, newMessage);
+                  if (getChatType === 'project') {
+                        setMessageToProject(projectId, newMessage);
+                  } else {
+                        setMessageToFile(projectId, getCurrentTab.id, newMessage);
+                  }
+
                   setInput('');
                   setTimeout(() => {
                         const aiMessage = {
                               id: (count + 1).toString(),
                               senderId: 'AI',
-                              text: 'Here is your MAind answer for ' + input,
+                              text: getChatType + ' : Here is your MAind answer for ' + input,
                               timestamp: new Date().toLocaleTimeString(),
-                              pageName: getCurrentTab?.name || 'Unknown File',
+                              pageName: getChatType == 'project' ? 'Project' : getCurrentTab?.name || 'Unknown File',
                               fileReference: {
-                                    name: getCurrentTab?.name || 'Unknown File',
+                                    name: getChatType == 'project' ? 'Project' : getCurrentTab?.name || 'Unknown File',
                                     path: 'components/ProjectCard.tsx',
                               },
                         };
-                        setMessageToFile(projectId, getCurrentTab.id, aiMessage);
+                        if (getChatType === 'project') {
+                              setMessageToProject(projectId, aiMessage);
+                        } else {
+                              setMessageToFile(projectId, getCurrentTab.id, aiMessage);
+                        }
                   }
                         , 1000);
             }
@@ -105,9 +115,10 @@ const ChatFooter = () => {
 
 
 
-                                    <div className="text-xs text-mBlue-600 hidden sm:block">
+                                    <div className="text-xs text-mBlue-600 ">
                                           <span className="mr-1">Ask</span>
-                                          <select className="bg-transparent outline-none text-sm" onChange={(e) => setSelect(e.target.value)} value={select}>
+                                          <select className="bg-transparent outline-none text-sm" onChange={(e) => setChatType(e.target.value)}
+                                                value={getChatType}>
                                                 <option value={'project'}>Project</option>
                                                 <option value={'file'}>File</option>
                                           </select>

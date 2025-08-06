@@ -1,9 +1,10 @@
 import MetaInfo from "@/components/ChatModule/atomic/MetaInfo";
 import { useFileMessages } from "@/hooks/getChatByFile";
-import { useProjectStore, useTabStore } from "@maind-tec-project/state-management";
+import { useProjectMessages } from "@/hooks/getChatsByProject";
+import { useChatStore, useProjectStore, useTabStore } from "@maind-tec-project/state-management";
 import clsx from "clsx";
 import { Bot, Paperclip } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 export interface FileReference {
       name: string;
       path: string;
@@ -67,15 +68,19 @@ const ChatMessages = () => {
       const projectId = useProjectStore((state) => state.getProjectId());
       const currentUserId = "me_001"
       const messagesEndRef = useRef<HTMLDivElement>(null);
-      const { messages } = useFileMessages(projectId, getCurrentTab?.id)
+      const { messages: fileMessages } = useFileMessages(projectId, getCurrentTab?.id)
+      const { projectMessages } = useProjectMessages(projectId)
+      const getChatType = useChatStore((state) => state.chatType);
       useEffect(() => {
             messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-      }, [messages, getCurrentTab]);
+      }, [fileMessages, getCurrentTab, projectMessages]);
 
 
+      const messages = useMemo(() => (getChatType == 'project') ? projectMessages : fileMessages, [projectMessages, fileMessages])
       return (
 
             <div className="flex-1 px-4 py-6">
+                  {getChatType}
                   <div className="max-w-3xl mx-auto space-y-6">
 
                         {messages.length ? messages?.map((msg, index) => {
@@ -83,7 +88,7 @@ const ChatMessages = () => {
 
                               return (
                                     <div
-                                          key={msg.id}
+                                          key={index + msg.id}
                                           className={clsx(
                                                 'flex flex-col gap-1',
                                                 isOwn ? 'items-end' : 'items-start'

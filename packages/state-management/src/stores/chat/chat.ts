@@ -50,6 +50,8 @@ type ChatState = {
                   };
             };
       };
+      chatType: string;
+      setChatType: (type: string) => void;
       setMessageToProject: (projectId: string, message: Message) => void;
       setMessageToFile: (projectId: string, fileId: string, message: Message) => void;
       getMessagesByProjectId: (projectId: string) => Message[];
@@ -60,7 +62,10 @@ type ChatState = {
 
 export const useChatStore = create<ChatState>((set, get) => ({
       chats: {},
-
+      chatType: 'project',
+      setChatType: (type: string) => {
+            set({ chatType: type });
+      },
       setMessageToProject: (projectId, message) => {
             set((state) => {
                   const existingProject = state.chats[projectId] || { messages: [], files: {} };

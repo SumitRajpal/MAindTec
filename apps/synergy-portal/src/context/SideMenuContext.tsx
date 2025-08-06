@@ -20,8 +20,7 @@ export const SideMenuProvider: React.FC<SideMenuProviderProps> = ({ children }) 
 
 
   const sendUpdateRequest = (key: any) => {
-    console.log(`Sending request for: ${key}`);
-    // Here you can add your API call logic using fetch/axios
+    // console.log("Update request sent for key:", key);
   };
 
   return (

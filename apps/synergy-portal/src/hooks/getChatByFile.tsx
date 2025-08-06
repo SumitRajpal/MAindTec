@@ -1,9 +1,12 @@
 import { useChatStore } from "@maind-tec-project/state-management";
+import { useMemo } from "react";
 
-export function useFileMessages(projectId: string, fileId: string) {
+export const useFileMessages = (projectId: string, fileId: string) => {
       const fileMessages = useChatStore((state) => state.chats[projectId]?.files?.[fileId]);
 
-      const messages = fileMessages || [];
+      const messages = useMemo(() => {
+            return fileMessages || [];
+      }, [fileMessages]);
       const count = messages.length;
 
       return { messages, count };

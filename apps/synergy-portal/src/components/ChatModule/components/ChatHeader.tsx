@@ -1,3 +1,4 @@
+import { useChatStore } from '@maind-tec-project/state-management';
 import {
       HistoryIcon,
       Maximize2Icon,
@@ -33,10 +34,11 @@ const ChatOptions: React.FC = () => {
 };
 
 const ChatHeader: React.FC = () => {
+      const getChatType = useChatStore((state) => state.chatType);
       return (
             <div className="flex items-center justify-between px-4 h-10 bg-gray-50 text-gray-500 w-full">
                   <div className="relative">
-                        <span className="text-xs font-semibold tracking-widest">CHAT</span>
+                        <span className="text-xs font-semibold tracking-widest">{getChatType == 'project' ? 'Project Chat' : 'File Chat'}</span>
                         <div className="absolute bottom-0 left-0 h-[2px] w-full bg-mBlue-600 rounded-sm" />
                   </div>
                   <ChatOptions />
