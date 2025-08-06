@@ -76,7 +76,7 @@ const ChatMessages = () => {
       }, [fileMessages, getCurrentTab, projectMessages]);
 
 
-      const messages = useMemo(() => (getChatType == 'project') ? projectMessages : fileMessages, [projectMessages, fileMessages])
+      const messages = useMemo(() => (getChatType == 'project') ? projectMessages : fileMessages, [projectMessages, fileMessages, getChatType])
       return (
 
             <div className="flex-1 px-4 py-6">
