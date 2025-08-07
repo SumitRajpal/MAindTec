@@ -1,10 +1,11 @@
 import MetaInfo from "@/components/ChatModule/atomic/MetaInfo";
 import { useFileMessages } from "@/hooks/getChatByFile";
 import { useProjectMessages } from "@/hooks/getChatsByProject";
+import { useGetChats } from "@/hooks/useGetChats";
 import { useChatStore, useProjectStore, useTabStore } from "@maind-tec-project/state-management";
 import clsx from "clsx";
 import { Bot, Paperclip } from "lucide-react";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef } from "react";
 export interface FileReference {
       name: string;
       path: string;
@@ -76,7 +77,9 @@ const ChatMessages = () => {
       }, [fileMessages, getCurrentTab, projectMessages]);
 
 
-      const messages = useMemo(() => (getChatType == 'project') ? projectMessages : fileMessages, [projectMessages, fileMessages, getChatType])
+      // const messages = useMemo(() => (getChatType == 'project') ? projectMessages : fileMessages, [projectMessages, fileMessages, getChatType])
+      const { messages, count } = useGetChats();
+
       return (
 
             <div className="flex-1 px-4 py-6">
